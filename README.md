@@ -157,7 +157,9 @@ LPIPS сравнивает признаки результата и HR, извл
 
 ![PSNR на генерируемой области при bicubic](results/plots/bicubic_psnr_mask.png)
 
-![LPIPS на генерируемой области при realesrgan_like](results/plots/realesrgan_like_lpips_mask.png)
+![LPIPS на генерируемой области при bicubic](results/plots/bicubic_lpips_mask.png)
+
+![CLIP-IQA на генерируемой области при bicubic](results/plots/bicubic_clip_iqa_mask.png)
 
 | Деградация | Всё изображение | Генерируемая область |
 |---|---|---|
