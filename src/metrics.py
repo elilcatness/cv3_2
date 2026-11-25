@@ -2,6 +2,8 @@ import math
 
 import numpy as np
 import torch
+from torchmetrics.image.lpip import LearnedPerceptualImagePatchSimilarity
+from torchmetrics.multimodal import CLIPImageQualityAssessment
 
 from .masks import expand_mask, rectangle
 from .utils import image_tensor
@@ -26,15 +28,12 @@ class QualityMetrics:
         self.device = device
         self.lpips = self.clip = None
         if perceptual:
-            from torchmetrics.image.lpip import LearnedPerceptualImagePatchSimilarity
-            from torchmetrics.multimodal import CLIPImageQualityAssessment
-
             self.lpips = LearnedPerceptualImagePatchSimilarity(net_type='alex', normalize=True).to(device).eval()
             self.clip = CLIPImageQualityAssessment(model_name_or_path='clip_iqa', data_range=1.0).to(device).eval()
 
     @torch.no_grad()
     def _perceptual(self, image, target):
-        if self.lpips is None or min(image.size) < 64:
+        if self.lpips is None or self.clip is None or min(image.size) < 64:
             return math.nan, math.nan
         x, y = (image_tensor(im).to(self.device) for im in (image, target))
         lpips = float(self.lpips(x, y).item())

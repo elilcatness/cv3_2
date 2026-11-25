@@ -1,0 +1,31 @@
+{
+  "hr_dir": "data/HR",
+  "output": "results",
+  "size": 128,
+  "limit": 5,
+  "degradations": [
+    "bicubic",
+    "unknown",
+    "realesrgan_like"
+  ],
+  "paired": [],
+  "masks": [
+    "all_one",
+    "all_zero",
+    "known25",
+    "known50",
+    "known75"
+  ],
+  "seeds": [
+    42
+  ],
+  "degradation_seed": 42,
+  "metric_device": "cpu",
+  "psnr_only": false,
+  "device": "auto",
+  "precision": "auto",
+  "steps": 50,
+  "noise_level": 20,
+  "guidance_scale": 1.0,
+  "prompt": ""
+}

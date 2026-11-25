@@ -43,7 +43,7 @@ class SRInpaintingPipeline:
 
     @classmethod
     def from_pretrained(cls, device='auto', precision='auto'):
-        from diffusers import DDIMScheduler, StableDiffusionUpscalePipeline
+        from diffusers import DDIMScheduler, StableDiffusionUpscalePipeline  # type: ignore
 
         device = resolve_device(device)
         dtype = torch.float32 if precision == 'fp32' or (precision == 'auto' and device.type == 'cpu') else torch.float16
